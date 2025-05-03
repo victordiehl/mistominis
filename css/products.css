@@ -1,0 +1,39 @@
+/* product.css */
+
+/* Container do detail em flex row */
+.product-detail {
+    display: flex;
+    max-width: 900px;
+    margin: 2rem auto;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 1rem;
+  }
+  
+  .product-detail img {
+    width: 50%;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 1rem;
+  }
+  
+  .product-info {
+    flex: 1;
+  }
+  
+  .product-info h2 { margin-top: 0; }
+  .product-info .price {
+    color: #D32F2F;
+    font-size: 1.5rem;
+    margin: .5rem 0;
+  }
+  .product-info .description {
+    margin: 1rem 0;
+  }
+  .product-info button {
+    padding: .75rem 1.5rem;
+    background: #D32F2F;
+    color: #fff;
+    border-radius: 4px;
+  }
+  

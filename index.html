@@ -5,50 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Misto Minis</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; }
-    body { background-color: #f5f5f5; font-family: Arial, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
-    header { background-color: #D32F2F; color: white; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-    header h1 { font-family: 'Cinzel', serif; font-size: 2rem; margin: 0; cursor: pointer; }
-    .header-menu { flex: 1; display: flex; justify-content: center; gap: 2rem; }
-    .dropdown { position: relative; }
-    .dropdown > button { background: transparent; border: none; color: white; font-size: 1rem; padding: 0.75rem 1.5rem; cursor: pointer; font-family: 'Cinzel', serif; transition: color 0.3s; }
-    .dropdown > button::after { content: "▼"; margin-left: 0.3em; font-size: 0.6em; vertical-align: middle; }
-    .dropdown:hover > button { color: #FFC107; }
-    .dropdown-content { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: white; color: #333; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); white-space: nowrap; margin-top: 0.1rem; z-index: 100; }
-    .dropdown-content a { display: block; padding: 0.5rem 1rem; text-decoration: none; color: #333; }
-    .dropdown-content a:hover { background: #f0f0f0; }
-    .dropdown > button:hover + .dropdown-content, .dropdown-content:hover { display: block; }
-    .header-actions { display: flex; align-items: center; gap: 1rem; }
-    .header-search input { width: 180px; padding: 0.4rem 0.8rem; font-size: 0.9rem; border: none; border-radius: 20px; background: rgba(255,255,255,0.2); color: white; outline: none; text-align: center; }
-    .cart-button, .login-button { background: transparent; border: none; color: white; padding: 0.5rem 1rem; font-size: 1rem; border-radius: 8px; cursor: pointer; transition: background 0.3s; display: flex; align-items: center; gap: 0.4rem; }
-    .cart-button:hover, .login-button:hover { background: rgba(255,255,255,0.2); }
-    .banner { width: 100%; overflow: hidden; margin: 1rem 0; }
-    .banner img { width: 100%; height: auto; display: block; }
-    .main-content { display: flex; max-width: 1200px; margin: 0 auto 2rem; gap: 1rem; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-radius: 8px; padding: 1rem; }
-    .sidebar { width: 250px; background: #f9f9f9; padding: 1rem; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    .sidebar h2 { font-size: 1.2rem; color: #333; margin-bottom: 1rem; }
-    .filter-group { margin-bottom: 1rem; }
-    .filter-group legend { font-weight: bold; color: #555; margin-bottom: 0.5rem; }
-    .filter-group label { display: block; margin-bottom: 0.25rem; cursor: pointer; }
-    .filter-group input[type="checkbox"] { margin-right: 0.5rem; }
-    .products-wrapper { flex: 1; }
-    .products-title { font-size: 1.5rem; color: #333; margin-bottom: 1rem; }
-    .products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-    .product { background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 0.5rem; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; }
-    .product:hover { transform: translateY(-5px); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-    .product img { width: 100%; height: 150px; object-fit: cover; border-radius: 6px; margin-bottom: 0.5rem; }
-    .product h3 { margin: 0.5rem 0 0.25rem; font-size: 1rem; }
-    .product p { margin: 0; font-size: 0.9rem; }
-    .product a.details { display: inline-block; margin-top: 0.5rem; padding: 0.5rem 1rem; background: #D32F2F; color: white; border-radius: 4px; text-decoration: none; font-family: inherit; }
-    .product button.add-cart { background: transparent; border: none; font-size: 1.2rem; color: #D32F2F; margin-left: 0.5rem; cursor: pointer; vertical-align: middle; transition: color 0.3s; }
-    .product button.add-cart:hover { color: #B71C1C; }
-    footer { background: #D32F2F; color: white; text-align: center; padding: 1rem; font-size: 0.875rem; position: fixed; bottom: 0; left: 0; right: 0; }
-    footer ul { list-style: none; padding: 0; margin: 0; display: flex; justify-content: center; gap: 1rem; }
-    footer a { color: white; text-decoration: none; }
-    @media (max-width: 900px) { .main-content { flex-direction: column; } .sidebar { width: 100%; margin-bottom: 1rem; } .products { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 600px) { .products { grid-template-columns: 1fr; } }
-  </style>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
 <header>
@@ -121,59 +79,6 @@
   </ul>
 </footer>
 
-<script>
-  // Carrega produtos do JSON e renderiza
-  async function fetchProducts() {
-    const res = await fetch('products.json');
-    return await res.json();
-  }
-
-  function renderProducts(list) {
-    const productList = document.getElementById('product-list');
-    productList.innerHTML = '';
-    list.forEach(p => {
-      const div = document.createElement('div');
-      div.className = 'product';
-      div.innerHTML = `
-        <a href="produto.html?id=${p.id}"><img src="${p.imageUrl}" alt="${p.name}"></a>
-        <h3><a href="produto.html?id=${p.id}" style="text-decoration:none; color:inherit;">${p.name}</a></h3>
-        <p>R$ ${p.price.toFixed(2)}</p>
-        <a href="produto.html?id=${p.id}" class="details">Ver Detalhes</a>
-        <button class="add-cart" onclick="addToCart(${p.id})">🛒</button>
-      `;
-      productList.appendChild(div);
-    });
-  }
-
-  let loadedProducts = [];
-  let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-
-  function addToCart(id) {
-    cartItems.push(id);
-    localStorage.setItem('cart', JSON.stringify(cartItems));
-    updateCartCount();
-  }
-
-  function updateCartCount() {
-    document.getElementById('cart-count').textContent = cartItems.length;
-  }
-
-  function viewCart() {
-    window.location.href = 'carrinho.html';
-  }
-
-  function searchProducts() {
-    const term = document.getElementById('search-input').value.toLowerCase();
-    const filtered = loadedProducts.filter(p => p.name.toLowerCase().includes(term));
-    renderProducts(filtered);
-  }
-
-  // Inicializa a página: carrega produtos e atualiza carrinho
-  window.addEventListener('DOMContentLoaded', async () => {
-    loadedProducts = await fetchProducts();
-    renderProducts(loadedProducts);
-    updateCartCount();
-  });
-</script>
+<script src="js/main.js"></script>
 </body>
 </html>
