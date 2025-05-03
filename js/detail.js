@@ -1,26 +1,26 @@
 // js/detail.js
 async function fetchProducts() {
-    const res = await fetch('products.json');
+    const res = await fetch('data/products.json');
     return await res.json();
   }
   
-  function getProductId() {
+function getProductId() {
     return Number(new URLSearchParams(location.search).get('id')) || 1;
   }
   
-  function updateCartCount() {
+function updateCartCount() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     document.getElementById('cart-count').textContent = cart.length;
   }
   
-  function addToCart(id) {
+function addToCart(id) {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     cart.push(id);
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartCount();
   }
   
-  async function renderDetail() {
+async function renderDetail() {
     const products = await fetchProducts();
     const product = products.find(p => p.id === getProductId());
     const container = document.getElementById('detail-container');
