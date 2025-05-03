@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "Aventureiros",
+    "price": 49.90,
+    "imageUrl": "adventurers.jpg",
+    "description": "Conjunto de miniaturas de aventureiros: heróis valentes."
+  },
+  {
+    "id": 2,
+    "name": "Mago Élfico",
+    "price": 59.90,
+    "imageUrl": "produto2.jpg",
+    "description": "Mago élfico com chapéu pontudo e cajado."
+  },
+  {
+    "id": 3,
+    "name": "Arqueiro Anão",
+    "price": 39.90,
+    "imageUrl": "produto3.jpg",
+    "description": "Arqueiro anão com arco e flechas detalhados."
+  },
+  {
+    "id": 4,
+    "name": "Cavaleiro Negro",
+    "price": 89.90,
+    "imageUrl": "darkknight.jpg",
+    "description": "Cavaleiro negro em armadura completa."
+  },
+  {
+    "id": 5,
+    "name": "Dragão de Bronze",
+    "price": 149.90,
+    "imageUrl": "produto5.jpg",
+    "description": "Dragão de bronze com asas abertas."
+  },
+  {
+    "id": 6,
+    "name": "Produto de Teste",
+    "price": 0.00,
+    "imageUrl": "produto6.jpg",
+    "description": "Miniatura de teste para demonstração."
+  }
+]

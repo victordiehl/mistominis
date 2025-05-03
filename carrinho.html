@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrinho - Misto Miniaturas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+    }
+    header {
+      background-color: #D32F2F;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      font-family: 'Cinzel', serif;
+    }
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #ddd;
+    }
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+    .cart-item button {
+      background-color: #D32F2F;
+      color: white;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .cart-item button:hover {
+      background-color: #B71C1C;
+    }
+    .total {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: right;
+    }
+    .finish-button {
+      margin-top: 1.5rem;
+      background-color: #388E3C;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.2rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      display: block;
+      width: 100%;
+      transition: background 0.3s;
+    }
+    .finish-button:hover {
+      background-color: #2E7D32;
+    }
+    footer {
+      background-color: #D32F2F;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    a {
+      color: white;
+      text-decoration: none;
+    }
+    .empty-message {
+      text-align: center;
+      font-size: 1.1rem;
+      margin-top: 2rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Seu Carrinho</h1>
+</header>
+
+<main id="cart-container">
+  <!-- Produtos do carrinho serão renderizados aqui -->
+</main>
+
+<footer>
+  <a href="index.html">← Continuar Comprando</a>
+</footer>
+
+<script>
+const products = [
+  { id: 1, name: 'Guerreiro Orc', price: 49.90 },
+  { id: 2, name: 'Mago Élfico', price: 59.90 },
+  { id: 3, name: 'Arqueiro Anão', price: 39.90 },
+  { id: 4, name: 'Cavaleiro Negro', price: 89.90 },
+  { id: 5, name: 'Dragão de Bronze', price: 149.90 },
+  { id: 6, name: 'Goblin Ladino', price: 29.90 },
+  { id: 7, name: 'Necromante Sombrio', price: 79.90 },
+  { id: 8, name: 'Paladino de Luz', price: 99.90 },
+  { id: 9, name: 'Bárbaro Tribal', price: 44.90 },
+  { id: 10, name: 'Feiticeira das Sombras', price: 64.90 },
+  { id: 11, name: 'Lobo Gigante', price: 34.90 },
+  { id: 12, name: 'Assassino Silencioso', price: 74.90 },
+];
+
+const cartContainer = document.getElementById('cart-container');
+let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+function renderCart() {
+  cartContainer.innerHTML = '';
+  if (cartItems.length === 0) {
+    cartContainer.innerHTML = '<p class="empty-message">Seu carrinho está vazio.</p>';
+    return;
+  }
+
+  let total = 0;
+
+  cartItems.forEach((id, index) => {
+    const product = products.find(p => p.id === id);
+    if (product) {
+      const itemDiv = document.createElement('div');
+      itemDiv.className = 'cart-item';
+      itemDiv.innerHTML = `
+        <span>${product.name} - R$ ${product.price.toFixed(2)}</span>
+        <button onclick="removeFromCart(${index})">Remover</button>
+      `;
+      cartContainer.appendChild(itemDiv);
+      total += product.price;
+    }
+  });
+
+  const totalDiv = document.createElement('div');
+  totalDiv.className = 'total';
+  totalDiv.textContent = `Total: R$ ${total.toFixed(2)}`;
+  cartContainer.appendChild(totalDiv);
+
+  const finishButton = document.createElement('button');
+  finishButton.className = 'finish-button';
+  finishButton.textContent = 'Finalizar Compra';
+  finishButton.onclick = finalizePurchase;
+  cartContainer.appendChild(finishButton);
+}
+
+function removeFromCart(index) {
+  cartItems.splice(index, 1);
+  localStorage.setItem('cart', JSON.stringify(cartItems));
+  renderCart();
+}
+
+function finalizePurchase() {
+  if (cartItems.length === 0) {
+    alert('Seu carrinho está vazio.');
+    return;
+  }
+  alert('Compra finalizada com sucesso! Obrigado por comprar conosco.');
+  cartItems = [];
+  localStorage.setItem('cart', JSON.stringify(cartItems));
+  window.location.href = 'index.html';
+}
+
+renderCart();
+</script>
+
+</body>
+</html>

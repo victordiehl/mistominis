@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalhes do Produto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { background-color: #f5f5f5; font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    header { background-color: #D32F2F; color: white; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+    header h1 { font-family: 'Cinzel', serif; font-size: 2rem; margin: 0; cursor: pointer; }
+    .header-actions { display: flex; align-items: center; gap: 1rem; }
+    .header-search input { width: 180px; padding: 0.4rem 0.8rem; border: none; border-radius: 20px; background: rgba(255,255,255,0.2); color: white; }
+    .cart-button, .login-button { background: transparent; border: none; color: white; padding: 0.5rem 1rem; cursor: pointer; }
+    main { max-width: 800px; margin: 2rem auto; background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .product-detail {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      flex-wrap: nowrap;
+    }
+    @media (max-width: 600px) {
+      .product-detail {
+        flex-direction: column;
+        flex-wrap: wrap;
+      }
+    }
+    .product-detail img { flex: 1 1 300px; max-width: 100%; border-radius: 6px; }
+    .product-info { flex: 1 1 300px; }
+    .product-info h2 { font-family: 'Cinzel', serif; font-size: 2rem; margin-top: 0; }
+    .product-info p.price { font-size: 1.5rem; color: #D32F2F; margin: 0.5rem 0; }
+    .product-info p.description { color: #333; line-height: 1.4; }
+    .product-info button { margin-top: 1rem; padding: 0.75rem 1.5rem; background: #D32F2F; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem; }
+    footer { background-color: #D32F2F; color: white; text-align: center; padding: 1rem; position: fixed; bottom: 0; width: 100%; }
+    footer ul { list-style: none; display: flex; justify-content: center; gap: 1rem; margin: 0; padding: 0; }
+    footer a { color: white; text-decoration: none; }
+  </style>
+</head>
+<body>
+<header>
+  <h1 onclick="location.href='index.html'">Misto Minis</h1>
+  <div class="header-actions">
+    <div class="header-search">
+      <input type="text" id="search-input" placeholder="Pesquisar...">
+    </div>
+    <button class="cart-button" onclick="viewCart()">🛒 <span id="cart-count">0</span></button>
+    <button class="login-button" onclick="location.href='login.html'">👤</button>
+  </div>
+</header>
+
+<main>
+  <div class="product-detail" id="detail-container">
+    <!-- Detalhes do produto carregados aqui via JS -->
+  </div>
+</main>
+
+<footer>
+  <ul>
+    <li><a href="#">Sobre Nós</a></li>
+    <li><a href="#">Privacidade</a></li>
+    <li><a href="#">Termos</a></li>
+  </ul>
+</footer>
+
+<script>
+  async function fetchProducts() {
+    const response = await fetch('products.json');
+    return response.json();
+  }
+
+  function getProductId() {
+    return Number(new URLSearchParams(window.location.search).get('id')) || 1;
+  }
+
+  async function renderDetail() {
+    const products = await fetchProducts();
+    const product = products.find(p => p.id === getProductId());
+    const container = document.getElementById('detail-container');
+    if (!product) { container.innerHTML = '<p>Produto não encontrado.</p>'; return; }
+    container.innerHTML = `
+      <img src="${product.imageUrl}" alt="${product.name}">
+      <div class="product-info">
+        <h2>${product.name}</h2>
+        <p class="price">R$ ${product.price.toFixed(2)}</p>
+        <p class="description">${product.description}</p>
+        <button onclick="addToCart(${product.id})">Adicionar ao Carrinho</button>
+      </div>
+    `;
+    updateCartCount();
+  }
+
+  let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  function addToCart(id) { cartItems.push(id); localStorage.setItem('cart', JSON.stringify(cartItems)); updateCartCount(); }
+  function updateCartCount() { document.getElementById('cart-count').textContent = cartItems.length; }
+  function viewCart() { window.location.href = 'carrinho.html'; }
+
+  window.addEventListener('DOMContentLoaded', renderDetail);
+</script>
+</body>
+</html>
