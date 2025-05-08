@@ -3,7 +3,7 @@
     "id": 1,
     "name": "Aventureiros",
     "price": 49.90,
-    "imageUrl": "adventurers.jpg",
+    "imageUrl": "midia/adventurers.jpg",
     "description": "Conjunto de miniaturas de aventureiros: heróis valentes."
   },
   {
@@ -24,7 +24,7 @@
     "id": 4,
     "name": "Cavaleiro Negro",
     "price": 89.90,
-    "imageUrl": "darkknight.jpg",
+    "imageUrl": "midia/darkknight.jpg",
     "description": "Cavaleiro negro em armadura completa."
   },
   {
