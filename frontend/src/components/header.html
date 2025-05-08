@@ -1,0 +1,20 @@
+<!-- frontend/src/components/header.html -->
+<header>
+  <h1 onclick="location.reload()" style="cursor: pointer; font-family: 'Cinzel', serif;">
+    Misto Minis
+  </h1>
+  <div class="header-actions">
+    <div class="header-search">
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Pesquisar..."
+        oninput="searchProducts()"
+      >
+    </div>
+    <button class="cart-button" onclick="viewCart()">
+      🛒 <span id="cart-count">0</span>
+    </button>
+    <button class="login-button">Sua conta</button>
+  </div>
+</header>

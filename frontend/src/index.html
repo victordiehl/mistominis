@@ -12,45 +12,8 @@
 <body>
 <script type="module" src="js/firebase-init.js"></script>
 <script type="module" src="js/auth.js"></script>
+<script src="js/include-header.js"></script>
 <script src="js/main.js"></script>
-
-
-<header>
-  <h1 onclick="location.reload()">Misto Minis</h1>
-  <div class="header-menu">
-    <div class="dropdown">
-      <button>Heróis</button>
-      <div class="dropdown-content">
-        <a href="#">Humanos</a>
-        <a href="#">Anões</a>
-        <a href="#">Elfos</a>
-      </div>
-    </div>
-    <div class="dropdown">
-      <button>Monstros</button>
-      <div class="dropdown-content">
-        <a href="#">Orcs</a>
-        <a href="#">Goblins</a>
-        <a href="#">Trolls</a>
-      </div>
-    </div>
-    <div class="dropdown">
-      <button>Terrenos</button>
-      <div class="dropdown-content">
-        <a href="#">Florestas</a>
-        <a href="#">Montanhas</a>
-        <a href="#">Cidades</a>
-      </div>
-    </div>
-  </div>
-  <div class="header-actions">
-    <div class="header-search">
-      <input type="text" id="search-input" placeholder="Pesquisar..." oninput="searchProducts()">
-    </div>
-    <button class="cart-button" onclick="viewCart()">🛒 <span id="cart-count">0</span></button>
-    <button class="login-button" onclick="location.href='login.html'">👤</button>
-  </div>
-</header>
 
 <div class="banner">
   <img src="midia/banner.PNG" alt="Banner promocional">

@@ -2,7 +2,8 @@
 
 // Busca produtos do JSON
 async function fetchProducts() {
-    const res = await fetch('data/products.json');
+    const res = await fetch('./data/products.json');
+    if (!res.ok) throw new Error('Não encontrou products.json');
     return await res.json();
   }
   
