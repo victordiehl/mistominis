@@ -10,46 +10,44 @@
 </head>
 
 <body>
-<script type="module" src="./js/firebase-init.js"></script>
-<script type="module" src="./js/include-header.js"></script>
-<!-- <script type="module" src="./js/auth.js"></script> -->
-<script src="./js/main.js"></script>
+  <script type="module" src="./js/firebase-init.js"></script>
 
 
-<div class="banner">
-  <img src="midia/banner.PNG" alt="Banner promocional">
-</div>
 
-<div class="main-content">
-  <aside class="sidebar">
-    <h2>Filtros</h2>
-    <fieldset class="filter-group">
-      <legend>Sistema</legend>
-      <label><input type="checkbox" name="system-filter" value="fantasia" onchange="applyFilters()">Fantasia</label>
-      <label><input type="checkbox" name="system-filter" value="scifi" onchange="applyFilters()">Sci-fi</label>
-    </fieldset>
-    <fieldset class="filter-group">
-      <legend>Preço</legend>
-      <label><input type="checkbox" name="price-filter" value="0-50" onchange="applyFilters()">R$0 - R$50</label>
-      <label><input type="checkbox" name="price-filter" value="50-100" onchange="applyFilters()">R$50 - R$100</label>
-      <label><input type="checkbox" name="price-filter" value="100-200" onchange="applyFilters()">R$100 - R$200</label>
-    </fieldset>
-  </aside>
-  <div class="products-wrapper">
-    <h2 class="products-title">MINIATURAS NÃO PINTADAS</h2>
-    <div class="products" id="product-list"></div>
+  <div class="banner">
+    <img src="midia/banner.PNG" alt="Banner promocional">
   </div>
-</div>
 
-<footer>
-  <ul>
-    <li><a href="#">Sobre Nós</a></li>
-    <li><a href="#">Privacidade</a></li>
-    <li><a href="#">Termos</a></li>
-  </ul>
-</footer>
+  <div class="main-content">
+    <aside class="sidebar">
+      <h2>Filtros</h2>
+      <fieldset class="filter-group">
+        <legend>Sistema</legend>
+        <label><input type="checkbox" name="system-filter" value="fantasia" onchange="applyFilters()">Fantasia</label>
+        <label><input type="checkbox" name="system-filter" value="scifi" onchange="applyFilters()">Sci-fi</label>
+      </fieldset>
+      <fieldset class="filter-group">
+        <legend>Preço</legend>
+        <label><input type="checkbox" name="price-filter" value="0-50" onchange="applyFilters()">R$0 - R$50</label>
+        <label><input type="checkbox" name="price-filter" value="50-100" onchange="applyFilters()">R$50 - R$100</label>
+        <label><input type="checkbox" name="price-filter" value="100-200" onchange="applyFilters()">R$100 - R$200</label>
+      </fieldset>
+    </aside>
+    <div class="products-wrapper">
+      <h2 class="products-title">MINIATURAS NÃO PINTADAS</h2>
+      <div class="products" id="product-list"></div>
+    </div>
+  </div>
 
-
-<script src="js/main.js"></script>
+  <footer>
+    <ul>
+      <li><a href="#">Sobre Nós</a></li>
+      <li><a href="#">Privacidade</a></li>
+      <li><a href="#">Termos</a></li>
+    </ul>
+  </footer>
+  <script type="module" src="./js/include-header.js"></script>
+  <script type="module" src="./js/main.js"></script>
+  <!-- <script type="module" src="./js/auth.js"></script> -->
 </body>
 </html>

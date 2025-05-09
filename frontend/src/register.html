@@ -2,74 +2,96 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Registrar-se | Misto Minis</title>
-
-  <link rel="stylesheet" href="css/common.css">
-  <link rel="stylesheet" href="css/register.css">
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/common.css" />
+  <link rel="stylesheet" href="css/register.css" />
   <script type="module" src="./js/firebase-init.js"></script>
-  <script type="module" src="./js/include-header.js"></script>
-</head>
-<body>
 
+</head>
+
+<body>
   <main>
     <div class="register-container">
       <form id="register-form">
         <h2>Criar Conta</h2>
 
         <!-- Dados Pessoais -->
-        <label>Nome Completo <span class="required">*</span></label>
-        <input type="text"    id="reg-name"       required>
+        <label>
+          <span class="required">*</span> Nome Completo
+        </label>
+        <input type="text" id="reg-name" required />
 
-        <label>Email <span class="required">*</span></label>
-        <input type="email"   id="reg-email"      required>
+        <label>
+          <span class="required">*</span> Email
+        </label>
+        <input type="email" id="reg-email" required />
 
-        <label>Senha <span class="required">*</span></label>
-        <input type="password" id="reg-password"   required>
+        <label>
+          <span class="required">*</span> Senha
+        </label>
+        <input type="password" id="reg-password" required />
 
-        <label>Confirme a Senha <span class="required">*</span></label>
-        <input type="password" id="reg-password-confirm" required>
+        <label>
+          <span class="required">*</span> Confirme a Senha
+        </label>
+        <input type="password" id="reg-password-confirm" required />
 
-        <label>CPF <span class="required">*</span></label>
-        <input type="text"     id="reg-cpf"        required>
+        <label>
+          <span class="required">*</span> CPF
+        </label>
+        <input type="text" id="reg-cpf" required />
 
-        <label>Telefone <span class="required">*</span></label>
-        <input type="tel"      id="reg-phone"      required>
+        <label>
+          Telefone
+        </label>
+        <input type="tel" id="reg-phone" />
 
         <!-- Endereço -->
-        <label>Endereço (Rua, Av.) <span class="required">*</span></label>
-        <input type="text"     id="reg-street"     required>
+        <label>
+          <span class="required">*</span> Endereço (Rua, Av.)
+        </label>
+        <input type="text" id="reg-street" required />
 
         <div class="address-row">
           <div>
-            <label>Número <span class="required">*</span></label>
-            <input type="text" id="reg-number"       required>
+            <label>
+              <span class="required">*</span> Número
+            </label>
+            <input type="text" id="reg-number" required />
           </div>
           <div>
             <label>Complemento</label>
-            <input type="text" id="reg-complement">
+            <input type="text" id="reg-complement" />
           </div>
         </div>
 
-        <label>Bairro <span class="required">*</span></label>
-        <input type="text"     id="reg-neighborhood" required>
+        <label>
+          <span class="required">*</span> Bairro
+        </label>
+        <input type="text" id="reg-neighborhood" required />
 
         <div class="address-row">
           <div>
-            <label>Cidade <span class="required">*</span></label>
-            <input type="text" id="reg-city"         required>
+            <label>
+              <span class="required">*</span> Cidade
+            </label>
+            <input type="text" id="reg-city" required />
           </div>
           <div>
-            <label>Estado (UF) <span class="required">*</span></label>
-            <input type="text" id="reg-state"        required>
+            <label>
+              <span class="required">*</span> Estado (UF)
+            </label>
+            <input type="text" id="reg-state" required />
           </div>
         </div>
 
-        <label>CEP <span class="required">*</span></label>
-        <input type="text"     id="reg-zip"        required>
+        <label>
+          <span class="required">*</span> CEP
+        </label>
+        <input type="text" id="reg-zip" required />
 
         <button type="submit">Registrar-se</button>
       </form>
@@ -85,5 +107,8 @@
   </footer>
 
   <script type="module" src="./js/register.js"></script>
+  <script type="module" src="./js/include-header.js"></script>
+  <script src="./js/main.js"></script>
 </body>
+
 </html>

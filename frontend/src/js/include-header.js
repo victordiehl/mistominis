@@ -13,8 +13,10 @@ async function includeHeader() {
     document.body.insertAdjacentHTML('afterbegin', html);
 
     // 2) Reaplicar comportamentos globais
-    updateCartCount?.();
-    searchProducts?.();
+  if (typeof updateCartCount === 'function' && document.getElementById('cart-count')) {
+        updateCartCount();
+    }    
+    // searchProducts?.();
 
     // 3) Configurar dropdown e login
     setupAccountBehavior();

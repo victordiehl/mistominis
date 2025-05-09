@@ -23,7 +23,8 @@ body {
 
 .required {
   color: #D32F2F;
-  margin-left: 0.2rem;
+  font-size: 2em;           /* tamanho maior */
+  line-height: 1;           /* mantém alinhado ao centro */
 }
 
 #register-form h2 {
@@ -42,8 +43,11 @@ body {
 }
 
 label {
-  display: block;
+  display: flex;
+  align-items: center;      /* centraliza verticalmente */
+  gap: 0.25rem;             /* espaço entre asterisco e texto */
   font-weight: bold;
+  margin-top: 1rem;
   font-size: 0.95rem;
 }
 
