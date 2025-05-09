@@ -1,7 +1,6 @@
 // js/auth.js
 import { auth } from './firebase-init.js';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut
-} from 'https://www.gstatic.com/firebasejs/11.7.0/firebase-auth.js';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/11.7.0/firebase-auth.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1) Login com e-mail/senha
@@ -49,30 +48,4 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-
-  // 4) Monitora mudanças no estado de autenticação
-  onAuthStateChanged(auth, user => {
-    const headerActions = document.querySelector('header .header-actions');
-    // Remove botões antigos, se houver
-    const loginBtn  = document.querySelector('.login-button');
-    const logoutBtn = document.querySelector('.logout-button');
-    if (loginBtn)  loginBtn.remove();
-    if (logoutBtn) logoutBtn.remove();
-
-    if (user) {
-      // Se estiver logado, mostra botão de logout
-      const btn = document.createElement('button');
-      btn.textContent   = `👤 ${user.email}`;
-      btn.className     = 'logout-button';
-      btn.onclick       = () => signOut(auth);
-      headerActions.appendChild(btn);
-    } else {
-      // Se não, mostra botão de login
-      const btn = document.createElement('button');
-      btn.textContent   = '👤';
-      btn.className     = 'login-button';
-      btn.onclick       = () => window.location.href = 'login.html';
-      headerActions.appendChild(btn);
-    }
-  });
 });

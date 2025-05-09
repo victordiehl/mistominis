@@ -7,6 +7,28 @@ async function fetchProducts() {
     return await res.json();
   }
   
+  function applyFilters() {
+    const systems = Array.from(document.querySelectorAll('input[name="system-filter"]:checked')).map(cb => cb.value);
+    const prices = Array.from(document.querySelectorAll('input[name="price-filter"]:checked')).map(cb => cb.value);
+    let filtered = [...loadedProducts];
+    if (systems.length) filtered = filtered.filter(p => systems.includes(p.category));
+    if (prices.length) filtered = filtered.filter(p => prices.some(range => {
+      const [min, max] = range.split('-').map(Number);
+      return p.price >= min && p.price < max;
+    }));
+    renderProducts(filtered);
+  }
+
+  function searchProducts() {
+    const term = document.getElementById('search-input').value.toLowerCase();
+    const filtered = loadedProducts.filter(p => p.name.toLowerCase().includes(term));
+    renderProducts(filtered);
+  }
+
+  function viewCart() {
+    window.location.href = 'carrinho.html';
+  }
+
   // Renderiza lista de produtos no index.html
   function renderProducts(products) {
     const productList = document.getElementById('product-list');
@@ -38,31 +60,6 @@ async function fetchProducts() {
   // Atualiza contador no header
   function updateCartCount() {
     document.getElementById('cart-count').textContent = cartItems.length;
-  }
-  
-  // Navega para página do carrinho
-  function viewCart() {
-    window.location.href = 'carrinho.html';
-  }
-  
-  // Busca por termo digitado
-  function searchProducts() {
-    const term = document.getElementById('search-input').value.toLowerCase();
-    const filtered = loadedProducts.filter(p => p.name.toLowerCase().includes(term));
-    renderProducts(filtered);
-  }
-  
-  // Filtra por sistema e preço
-  function applyFilters() {
-    const systems = Array.from(document.querySelectorAll('input[name="system-filter"]:checked')).map(cb => cb.value);
-    const prices = Array.from(document.querySelectorAll('input[name="price-filter"]:checked')).map(cb => cb.value);
-    let filtered = [...loadedProducts];
-    if (systems.length) filtered = filtered.filter(p => systems.includes(p.category));
-    if (prices.length) filtered = filtered.filter(p => prices.some(range => {
-      const [min, max] = range.split('-').map(Number);
-      return p.price >= min && p.price < max;
-    }));
-    renderProducts(filtered);
   }
   
   // Inicializa ao carregar DOM
