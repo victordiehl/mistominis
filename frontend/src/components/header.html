@@ -4,6 +4,8 @@
     Misto Minis
   </h1>
   <div class="header-actions">
+
+    <!-- Busca -->
     <div class="header-search">
       <input
         type="text"
@@ -12,11 +14,13 @@
         oninput="searchProducts()"
       >
     </div>
+
+    <!-- Carrinho -->
     <button class="cart-button" onclick="viewCart()">
       🛒 <span id="cart-count">0</span>
     </button>
 
-    <!-- Account dropdown container -->
+    <!-- Dropdown Sua Conta (login) -->
     <div class="account-container">
       <button class="login-button">Sua conta</button>
       <div class="account-dropdown">
@@ -35,10 +39,10 @@
           >
           <button type="submit">Entrar</button>
         </form>
-        <!-- Novas opções abaixo do form -->
+        <!-- Opcional: link de cadastro dentro do dropdown -->
         <div class="account-links">
           <a href="recuperar-senha.html">Esqueceu Senha?</a>
-          <a href="registrar.html">Registrar-se</a>
+          <a href="register.html">Registrar-se</a>
         </div>
       </div>
     </div>

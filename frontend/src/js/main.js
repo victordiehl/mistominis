@@ -1,5 +1,3 @@
-// js/main.js
-
 // Busca produtos do JSON
 async function fetchProducts() {
     const res = await fetch('./data/products.json');
@@ -68,4 +66,3 @@ async function fetchProducts() {
     renderProducts(loadedProducts);
     updateCartCount();
   });
-  

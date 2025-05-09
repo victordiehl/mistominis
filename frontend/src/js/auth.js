@@ -48,4 +48,16 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // Após injetar o header e montar o dropdown...
+  onAuthStateChanged(auth, user => {
+    const btn = document.querySelector('.login-button');
+    if (!btn) return;  // se não existir, nada a fazer
+
+    if (user) {
+      // Usuário logado: mostra o email/nome e leva para perfil
+      btn.textContent = user.email;       // ou user.displayName
+      btn.onclick     = () => location.href = 'usuario.html';
+    }
+  });
 });
