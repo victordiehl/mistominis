@@ -8,6 +8,30 @@ import { createUserWithEmailAndPassword }    from "https://www.gstatic.com/fireb
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('register-form');
+  const zipInput = document.getElementById('reg-zip');
+
+  
+  zipInput.addEventListener('blur', async () => {
+    const cep = zipInput.value.replace(/\D/g, '');      // só números
+    if (cep.length !== 8) return;                       // CEP inválido
+
+    try {
+      const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+      if (!res.ok) throw new Error('Erro ao consultar CEP');
+      const data = await res.json();
+      if (data.erro) throw new Error('CEP não encontrado');
+
+      // Preenche os campos
+      document.getElementById('reg-street').value       = data.logradouro || '';
+      document.getElementById('reg-neighborhood').value = data.bairro     || '';
+      document.getElementById('reg-city').value         = data.localidade || '';
+      document.getElementById('reg-state').value        = data.uf         || '';
+    } catch (err) {
+      console.error(err);
+      alert('Não foi possível buscar o CEP. Verifique e tente novamente.');
+    }
+  });
+
 
   form.addEventListener('submit', async e => {
     e.preventDefault();

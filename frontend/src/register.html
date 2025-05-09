@@ -16,8 +16,6 @@
   <main>
     <div class="register-container">
       <form id="register-form">
-        <h2>Criar Conta</h2>
-
         <!-- Dados Pessoais -->
         <label>
           <span class="required">*</span> Nome Completo
@@ -50,6 +48,13 @@
         <input type="tel" id="reg-phone" />
 
         <!-- Endereço -->
+        <h3 class="section-title">Dados de Envio</h3>
+ 
+        <label>
+          <span class="required">*</span> CEP
+        </label>
+        <input type="text" id="reg-zip" required />
+
         <label>
           <span class="required">*</span> Endereço (Rua, Av.)
         </label>
@@ -87,12 +92,6 @@
             <input type="text" id="reg-state" required />
           </div>
         </div>
-
-        <label>
-          <span class="required">*</span> CEP
-        </label>
-        <input type="text" id="reg-zip" required />
-
         <button type="submit">Registrar-se</button>
       </form>
     </div>
